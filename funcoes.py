@@ -1,7 +1,7 @@
 from classes import Locadora, Cliente, Filme, Jogo
 
 def menu():
-    print("\nlocadora JHONIGACO")
+    print("\nLocadora JHONIGACO")
     print("1 - cadastrar cliente")
     print("2 - cadastrar filme")
     print("3 - cadastrar jogo")
@@ -28,7 +28,7 @@ def cadastrar_filme(locadora: Locadora):
         locadora.cadastrar_item(Filme(codigo, titulo, genero, duracao))
         print("filme cadastrado com sucesso!")
     except ValueError:
-        print("entrada inválida. Tente novamente.")
+        print("entrada inválida. tente novamente.")
 
 
 def cadastrar_jogo(locadora: Locadora):
