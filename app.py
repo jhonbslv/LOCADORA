@@ -7,9 +7,9 @@ def main():
     while True:
         menu()
         try:
-            opcao = int(input("escolha uma opção: "))
+            opcao = int(input("Escolha uma opção: "))
         except ValueError:
-            print("opção inválida, digite um número")
+            print("Opção inválida, digite um número")
             continue
 
         match opcao:
@@ -28,10 +28,10 @@ def main():
             case 7:
                 devolver_item(locadora)
             case 0:
-                print("saindo do sistema")
+                print("Saindo do sistema")
                 break
             case _:
-                print("opção inválida")
+                print("Opção inválida")
         
 if __name__ == "__main__":
     main()
