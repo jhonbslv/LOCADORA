@@ -35,7 +35,7 @@ class Jogo(Item):
             self.faixaEtaria = faixaEtaria
 
         def __str__(self):
-            return f"jogo: {super().__str__()} plataforma: {self.plataforma} faixa Etária: {self.faixaEtaria}+"
+            return f"Jogo: {super().__str__()} Plataforma: {self.plataforma} Faixa Etária: {self.faixaEtaria}+"
 
 class Cliente:
     def __init__(self, nome: str, cpf: str):
@@ -48,25 +48,25 @@ class Cliente:
             item.alugar()
             self.itensLocados.append(item)
         else:
-            raise Exception("este item já está alugado.")
+            raise Exception("Este item já está alugado.")
 
     def devolver(self, item: Item):
         if item in self.itensLocados:
             item.devolver()
             self.itensLocados.remove(item)
         else:
-            raise Exception("este item não foi alugado por este cliente.")
+            raise Exception("Este item não foi alugado por este cliente.")
 
     def listarItens(self):
         if not self.itensLocados:
             print(f"{self.nome} não possui itens alugados.")
         else:
-            print(f"itens alugados por {self.nome}:")
+            print(f"Itens alugados por {self.nome}:")
             for item in self.itensLocados:
                 print(f" - {item}")
 
     def __str__(self):
-        return f"cliente: {self.nome} CPF: {self.cpf}"
+        return f"Cliente: {self.nome} CPF: {self.cpf}"
 
 
 class Locadora:
