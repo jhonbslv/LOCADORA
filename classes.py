@@ -2,16 +2,20 @@ class Item:
     def __init__(self, codigo: int, titulo: str):
         self.codigo = codigo
         self.titulo = titulo
-        self.disponivel = True  
+        self.disponivel = True
+
     def alugar(self):
         if self.disponivel:
             self.disponivel = False
-            return f"Você alugou '{self.titulo}' com sucesso!"
-        return f"O item '{self.titulo}' já está alugado."
+        else:
+            raise Exception("Item já está alugado.")
 
     def devolver(self):
         self.disponivel = True
-        return f" '{self.titulo}' foi devolvido e já está disponível."
+
+    def __str__(self):
+        status = "Disponível" if self.disponivel else "Indisponível"
+        return f"[{self.codigo}] {self.titulo} {status}"
 
 
 class Filme(Item):
@@ -20,19 +24,18 @@ class Filme(Item):
         self.genero = genero
         self.duracao = duracao
 
-    def __str__(self):
-        return f" Filme: {self.titulo} | {self.genero} - {self.duracao} min"
+        def __str__(self):
+            return f"Filme: {super().__str__()} Gênero: {self.genero} Duração: {self.duracao} min"
 
 
 class Jogo(Item):
-    def __init__(self, codigo: int, titulo: str, plataforma: str, faixaEtaria: int):
-        super().__init__(codigo, titulo)
-        self.plataforma = plataforma
-        self.faixaEtaria = faixaEtaria
+        def __init__(self, codigo: int, titulo: str, plataforma: str, faixaEtaria: int):
+            super().__init__(codigo, titulo)
+            self.plataforma = plataforma
+            self.faixaEtaria = faixaEtaria
 
-    def __str__(self):
-        return f"Jogo: {self.titulo} | {self.plataforma} - {self.faixaEtaria}+"
-
+        def __str__(self):
+            return f"Jogo: {super().__str__()} Plataforma: {self.plataforma} Faixa Etária: {self.faixaEtaria}+"
 
 class Cliente:
     def __init__(self, nome: str, cpf: str):
@@ -42,23 +45,28 @@ class Cliente:
 
     def locar(self, item: Item):
         if item.disponivel:
-            resp = item.alugar()
+            item.alugar()
             self.itensLocados.append(item)
-            return resp
-        return f"O item '{item.titulo}' já está alugado por outra pessoa."
+        else:
+            raise Exception("Este item já está alugado.")
 
     def devolver(self, item: Item):
         if item in self.itensLocados:
-            resp = item.devolver()
+            item.devolver()
             self.itensLocados.remove(item)
-            return resp
-        return f"Você não alugou '{item.titulo}'."
+        else:
+            raise Exception("Este item não foi alugado por este cliente.")
 
     def listarItens(self):
         if not self.itensLocados:
-            return f"ℹ {self.nome} não tem nada alugado no momento."
-        lista = "\n".join([f" - {item}" for item in self.itensLocados])
-        return f"Itens alugados por {self.nome}:\n{lista}"
+            print(f"{self.nome} não possui itens alugados.")
+        else:
+            print(f"Itens alugados por {self.nome}:")
+            for item in self.itensLocados:
+                print(f" - {item}")
+
+    def __str__(self):
+        return f"Cliente: {self.nome} CPF: {self.cpf}"
 
 
 class Locadora:
@@ -68,21 +76,26 @@ class Locadora:
 
     def cadastrar_cliente(self, cliente: Cliente):
         self.clientes.append(cliente)
-        return f"Cliente '{cliente.nome}' cadastrado com sucesso!"
 
     def cadastrar_item(self, item: Item):
         self.itens.append(item)
-        return f"Item '{item.titulo}' adicionado ao catálogo."
+
+    def buscar_cliente(self, cpf: str):
+        for cliente in self.clientes:
+            if cliente.cpf == cpf:
+                return cliente
+        return None
+
+    def buscar_item(self, codigo: int):
+        for item in self.itens:
+            if item.codigo == codigo:
+                return item
+        return None
 
     def listar_clientes(self):
-        if not self.clientes:
-            return "Nenhum cliente cadastrado ainda."
-        return "\n".join([f" - {c.nome} (CPF: {c.cpf})" for c in self.clientes])
+        for cliente in self.clientes:
+            print(cliente)
 
     def listar_itens(self):
-        if not self.itens:
-            return "Nenhum item cadastrado ainda."
-        return "\n".join([
-            f" - {i} | {'Disponível' if i.disponivel else 'Alugado'}"
-            for i in self.itens
-        ])
+        for item in self.itens:
+            print(item)

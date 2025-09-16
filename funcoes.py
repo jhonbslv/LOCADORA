@@ -1,42 +1,84 @@
-from classes import Filme, Jogo, Cliente, Locadora
+# funcoes.py
+from classes import Locadora, Cliente, Filme, Jogo
 
-def criar_locadora_exemplo():
-    locadora = Locadora()
+def menu():
+    print("\n📀 Sistema de Locadora 📀")
+    print("1 - Cadastrar cliente")
+    print("2 - Cadastrar filme")
+    print("3 - Cadastrar jogo")
+    print("4 - Listar clientes")
+    print("5 - Listar itens")
+    print("6 - Locar item")
+    print("7 - Devolver item")
+    print("0 - Sair")
+
+
+def cadastrar_cliente(locadora: Locadora):
+    nome = input("Nome do cliente: ")
+    cpf = input("CPF do cliente: ")
+    locadora.cadastrar_cliente(Cliente(nome, cpf))
+    print("✅ Cliente cadastrado com sucesso!")
+
+
+def cadastrar_filme(locadora: Locadora):
     try:
-        c1 = Cliente("João Silva", "123.456.789-00")
-        c2 = Cliente("Maria Souza", "987.654.321-00")
-        print(locadora.cadastrar_cliente(c1))
-        print(locadora.cadastrar_cliente(c2))
-
-        f1 = Filme(1, "Vingadores", "Ação", 140)
-        j1 = Jogo(2, "The Last of Us", "PlayStation", 18)
-        print(locadora.cadastrar_item(f1))
-        print(locadora.cadastrar_item(j1))
-
-        return locadora, c1, c2, f1, j1
-    except Exception as e:
-        print(f"Erro ao configurar os dados iniciais: {e}")
+        codigo = int(input("Código do filme: "))
+        titulo = input("Título: ")
+        genero = input("Gênero: ")
+        duracao = int(input("Duração (min): "))
+        locadora.cadastrar_item(Filme(codigo, titulo, genero, duracao))
+        print("filme cadastrado com sucesso!")
+    except ValueError:
+        print("entrada inválida. Tente novamente.")
 
 
-def executar_operacao(locadora, cliente, filme, jogo, opcao):
-    """
-    Recebe uma opção do menu e usa match-case para decidir a ação.
-    """
+def cadastrar_jogo(locadora: Locadora):
     try:
-        match opcao:
-            case 1:
-                print(locadora.listar_clientes())
-            case 2:
-                print(locadora.listar_itens())
-            case 3:
-                print(cliente.locar(filme))
-            case 4:
-                print(cliente.devolver(filme))
-            case 5:
-                print(cliente.listarItens())
-            case 6:
-                print(cliente.locar(jogo))
-            case _:
-                print("Escolha uma opção certa.")
+        codigo = int(input("código do jogo: "))
+        titulo = input("título: ")
+        plataforma = input("plataforma: ")
+        faixaEtaria = int(input("faixa etária: "))
+        locadora.cadastrar_item(Jogo(codigo, titulo, plataforma, faixaEtaria))
+        print("jogo cadastrado com sucesso!")
+    except ValueError:
+        print("entrada inválida. tente novamente.")
+
+
+def locar_item(locadora: Locadora):
+    cpf = input("CPF do cliente: ")
+    cliente = locadora.buscar_cliente(cpf)
+    if not cliente:
+        print("cliente não encontrado.")
+        return
+
+    try:
+        codigo = int(input("código do item: "))
+        item = locadora.buscar_item(codigo)
+        if not item:
+            print("item não encontrado.")
+            return
+
+        cliente.locar(item)
+        print(f"✅ {cliente.nome} alugou '{item.titulo}' com sucesso!")
     except Exception as e:
-        print(f"Algo deu errado: {e}")
+        print(f"erro: {e}")
+
+
+def devolver_item(locadora: Locadora):
+    cpf = input("CPF do cliente: ")
+    cliente = locadora.buscar_cliente(cpf)
+    if not cliente:
+        print("cliente não encontrado.")
+        return
+
+    try:
+        codigo = int(input("código do item: "))
+        item = locadora.buscar_item(codigo)
+        if not item:
+            print("item não encontrado.")
+            return
+
+        cliente.devolver(item)
+        print(f"{cliente.nome} devolveu '{item.titulo}' com sucesso!")
+    except Exception as e:
+        print(f"erro: {e}")

@@ -14,8 +14,7 @@ if __name__ == "__main__":
         print("2 - Listar itens")
         print("3 - Locar filme")
         print("4 - Devolver filme")
-        print("5 - Ver itens alugados do João")
-        print("6 - Locar jogo")
+        print("5 - Locar jogo")
         print("0 - Sair")
 
         try:
