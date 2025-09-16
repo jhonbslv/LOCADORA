@@ -1,7 +1,7 @@
 from classes import Locadora, Cliente, Filme, Jogo
 
 def menu():
-    print("\nLocadora JHONIGACO")
+    print("\nlocadora JHONIGACO")
     print("1 - cadastrar cliente")
     print("2 - cadastrar filme")
     print("3 - cadastrar jogo")
