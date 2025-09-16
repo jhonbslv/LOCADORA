@@ -1,31 +1,30 @@
-# funcoes.py
 from classes import Locadora, Cliente, Filme, Jogo
 
 def menu():
-    print("\n📀 Sistema de Locadora 📀")
-    print("1 - Cadastrar cliente")
-    print("2 - Cadastrar filme")
-    print("3 - Cadastrar jogo")
-    print("4 - Listar clientes")
-    print("5 - Listar itens")
-    print("6 - Locar item")
-    print("7 - Devolver item")
-    print("0 - Sair")
+    print("\nlocadora JHONIGACO")
+    print("1 - cadastrar cliente")
+    print("2 - cadastrar filme")
+    print("3 - cadastrar jogo")
+    print("4 - listar clientes")
+    print("5 - listar itens")
+    print("6 - locar item")
+    print("7 - devolver item")
+    print("0 - sair")
 
 
 def cadastrar_cliente(locadora: Locadora):
-    nome = input("Nome do cliente: ")
+    nome = input("nome do cliente: ")
     cpf = input("CPF do cliente: ")
     locadora.cadastrar_cliente(Cliente(nome, cpf))
-    print("✅ Cliente cadastrado com sucesso!")
+    print("cliente cadastrado com sucesso!")
 
 
 def cadastrar_filme(locadora: Locadora):
     try:
-        codigo = int(input("Código do filme: "))
-        titulo = input("Título: ")
-        genero = input("Gênero: ")
-        duracao = int(input("Duração (min): "))
+        codigo = int(input("código do filme: "))
+        titulo = input("título: ")
+        genero = input("gênero: ")
+        duracao = int(input("duração (min): "))
         locadora.cadastrar_item(Filme(codigo, titulo, genero, duracao))
         print("filme cadastrado com sucesso!")
     except ValueError:
@@ -59,7 +58,7 @@ def locar_item(locadora: Locadora):
             return
 
         cliente.locar(item)
-        print(f"✅ {cliente.nome} alugou '{item.titulo}' com sucesso!")
+        print(f"{cliente.nome} alugou '{item.titulo}' com sucesso!")
     except Exception as e:
         print(f"erro: {e}")
 
