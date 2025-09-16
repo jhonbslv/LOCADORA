@@ -1,4 +1,5 @@
-from funcoes import criar_locadora_exemplo, executar_operacao
+from classes import Locadora
+from funcoes import menu, cadastrar_cliente, cadastrar_filme, cadastrar_jogo, locar_item, devolver_item
 
 if __name__ == "__main__":
     dados = criar_locadora_exemplo()
