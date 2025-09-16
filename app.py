@@ -9,7 +9,7 @@ if __name__ == "__main__":
     locadora, cliente1, cliente2, filme1, jogo1 = dados
 
     while True:
-        print("\n=== 🎬 LOCADORA DO BAIRRO ===")
+        print("\nLocadora Jhonigaco")
         print("1 - Listar clientes")
         print("2 - Listar itens")
         print("3 - Locar filme")
@@ -19,13 +19,13 @@ if __name__ == "__main__":
         print("0 - Sair")
 
         try:
-            opcao = int(input("👉 Escolha uma opção: "))
+            opcao = int(input("Escolha uma opção: "))
         except ValueError:
-            print("❌ Por favor, digite um número válido.")
+            print("Por favor, digite um número válido.")
             continue
 
         if opcao == 0:
-            print("👋 Até logo! Obrigado por usar a locadora.")
+            print("Até logo! Obrigado por usar a locadora.")
             break
 
         executar_operacao(locadora, cliente1, filme1, jogo1, opcao)

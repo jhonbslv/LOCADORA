@@ -76,12 +76,12 @@ class Locadora:
 
     def listar_clientes(self):
         if not self.clientes:
-            return "ℹ Nenhum cliente cadastrado ainda."
+            return "Nenhum cliente cadastrado ainda."
         return "\n".join([f" - {c.nome} (CPF: {c.cpf})" for c in self.clientes])
 
     def listar_itens(self):
         if not self.itens:
-            return "ℹ Nenhum item cadastrado ainda."
+            return "Nenhum item cadastrado ainda."
         return "\n".join([
             f" - {i} | {'Disponível' if i.disponivel else 'Alugado'}"
             for i in self.itens
