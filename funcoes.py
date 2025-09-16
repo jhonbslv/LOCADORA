@@ -33,28 +33,28 @@ def cadastrar_filme(locadora: Locadora):
 
 def cadastrar_jogo(locadora: Locadora):
     try:
-        codigo = int(input("código do jogo: "))
-        titulo = input("título: ")
-        plataforma = input("plataforma: ")
-        faixaEtaria = int(input("faixa etária: "))
+        codigo = int(input("Código do jogo: "))
+        titulo = input("Título: ")
+        plataforma = input("Plataforma: ")
+        faixaEtaria = int(input("Faixa etária: "))
         locadora.cadastrar_item(Jogo(codigo, titulo, plataforma, faixaEtaria))
-        print("jogo cadastrado com sucesso!")
+        print("Jogo cadastrado com sucesso!")
     except ValueError:
-        print("entrada inválida. tente novamente.")
+        print("Entrada inválida. tente novamente.")
 
 
 def locar_item(locadora: Locadora):
     cpf = input("CPF do cliente: ")
     cliente = locadora.buscar_cliente(cpf)
     if not cliente:
-        print("cliente não encontrado.")
+        print("Cliente não encontrado.")
         return
 
     try:
-        codigo = int(input("código do item: "))
+        codigo = int(input("Código do item: "))
         item = locadora.buscar_item(codigo)
         if not item:
-            print("item não encontrado.")
+            print("Item não encontrado.")
             return
 
         cliente.locar(item)
