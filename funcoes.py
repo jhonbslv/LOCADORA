@@ -1,34 +1,34 @@
 from classes import Locadora, Cliente, Filme, Jogo
 
 def menu():
-    print("\nlocadora JHONIGACO")
-    print("1 - cadastrar cliente")
-    print("2 - cadastrar filme")
-    print("3 - cadastrar jogo")
-    print("4 - listar clientes")
-    print("5 - listar itens")
-    print("6 - locar item")
-    print("7 - devolver item")
-    print("0 - sair")
+    print("\nLocadora JHONIGACO")
+    print("1 - Cadastrar cliente")
+    print("2 - Cadastrar filme")
+    print("3 - Cadastrar jogo")
+    print("4 - Listar clientes")
+    print("5 - Listar itens")
+    print("6 - Locar item")
+    print("7 - Devolver item")
+    print("0 - Sair")
 
 
 def cadastrar_cliente(locadora: Locadora):
-    nome = input("nome do cliente: ")
+    nome = input("Nome do cliente: ")
     cpf = input("CPF do cliente: ")
     locadora.cadastrar_cliente(Cliente(nome, cpf))
-    print("cliente cadastrado com sucesso!")
+    print("Cliente cadastrado com sucesso!")
 
 
 def cadastrar_filme(locadora: Locadora):
     try:
-        codigo = int(input("código do filme: "))
-        titulo = input("título: ")
-        genero = input("gênero: ")
-        duracao = int(input("duração (min): "))
+        codigo = int(input("Código do filme: "))
+        titulo = input("Título: ")
+        genero = input("Gênero: ")
+        duracao = int(input("Duração (min): "))
         locadora.cadastrar_item(Filme(codigo, titulo, genero, duracao))
-        print("filme cadastrado com sucesso!")
+        print("Filme cadastrado com sucesso!")
     except ValueError:
-        print("entrada inválida. tente novamente.")
+        print("Entrada inválida. Tente novamente.")
 
 
 def cadastrar_jogo(locadora: Locadora):
