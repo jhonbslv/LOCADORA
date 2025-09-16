@@ -60,24 +60,24 @@ def locar_item(locadora: Locadora):
         cliente.locar(item)
         print(f"{cliente.nome} alugou '{item.titulo}' com sucesso!")
     except Exception as e:
-        print(f"erro: {e}")
+        print(f"Erro: {e}")
 
 
 def devolver_item(locadora: Locadora):
     cpf = input("CPF do cliente: ")
     cliente = locadora.buscar_cliente(cpf)
     if not cliente:
-        print("cliente não encontrado.")
+        print("Cliente não encontrado.")
         return
 
     try:
-        codigo = int(input("código do item: "))
+        codigo = int(input("Código do item: "))
         item = locadora.buscar_item(codigo)
         if not item:
-            print("item não encontrado.")
+            print("Item não encontrado.")
             return
 
         cliente.devolver(item)
         print(f"{cliente.nome} devolveu '{item.titulo}' com sucesso!")
     except Exception as e:
-        print(f"erro: {e}")
+        print(f"Erro: {e}")
