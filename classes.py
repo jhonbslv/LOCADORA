@@ -8,13 +8,13 @@ class Item:
         if self.disponivel:
             self.disponivel = False
         else:
-            raise Exception("item já está alugado.")
+            raise Exception("Item já está alugado.")
 
     def devolver(self):
         self.disponivel = True
 
     def __str__(self):
-        status = "disponível" if self.disponivel else "indisponível"
+        status = "Disponível" if self.disponivel else "Indisponível"
         return f"[{self.codigo}] {self.titulo} {status}"
 
 
@@ -25,7 +25,7 @@ class Filme(Item):
             self.duracao = duracao
 
         def __str__(self):
-            return f"filme: {super().__str__()} gênero: {self.genero} duração: {self.duracao} min"
+            return f"Filme: {super().__str__()} Gênero: {self.genero} Duração: {self.duracao} min"
 
 
 class Jogo(Item):
